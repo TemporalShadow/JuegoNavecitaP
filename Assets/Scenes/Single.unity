@@ -507,7 +507,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 80fba5ece7697c44eacc036539c1b552, type: 3}
   - {fileID: 21300000, guid: 482c8e4c0346b704aa5f1760c3c989d5, type: 3}
   - {fileID: 21300000, guid: 9fe6f40efddf0b64fb68a3382b14a4db, type: 3}
-  livesDisplayImage: {fileID: 1726608606}
+  livesDisplayImageP1: {fileID: 1726608606}
+  livesDisplayImageP2: {fileID: 0}
   scoreCambiante: {fileID: 644191458}
   MainMenu: {fileID: 1255228683}
 --- !u!114 &1172564527
@@ -699,8 +700,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb26b5d3b98db14f92f2428bedc724e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSinglePlayer: 1
   prefabPlayer: {fileID: 8812725425737423788, guid: 271fa56c5319bc14bbe24bdbd13f35b8, type: 3}
-  spawnManager: {fileID: 0}
 --- !u!4 &1430299384
 Transform:
   m_ObjectHideFlags: 0

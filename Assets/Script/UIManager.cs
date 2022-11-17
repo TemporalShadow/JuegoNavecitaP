@@ -9,22 +9,40 @@ public class UIManager : MonoBehaviour
     public Sprite[] livesImages;
 
 
-    public Image livesDisplayImage;
+    public Image livesDisplayImageP1;
+    public Image livesDisplayImageP2;
 
     public Text scoreCambiante;
     
     private int currentScore = 0;
 
+    private bool isSinglePlayerOn = true;
 
     [SerializeField]
     private Image MainMenu;
 
-    public void UpgradeLifes(int currentLifes=1)
+    void Start()
+    {
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (gameManager != null)
+            isSinglePlayerOn = gameManager.IsSinglePlayerOn();
+    }
+
+    public void UpgradeLifes(int currentLifes,bool player)
     {
         //current lives
-        Debug.Log(currentLifes);
-        if(currentLifes<=livesImages.Length && currentLifes>=0)
-            livesDisplayImage.sprite = livesImages[currentLifes];
+         Debug.Log(currentLifes);
+        Debug.Log(player);
+        if (player)
+        {
+            if (currentLifes <= livesImages.Length && currentLifes >= 0)
+                livesDisplayImageP1.sprite = livesImages[currentLifes];
+        }
+        else
+        {
+            if (currentLifes <= livesImages.Length && currentLifes >= 0)
+                livesDisplayImageP2.sprite = livesImages[currentLifes];
+        }
     }
 
 
@@ -49,7 +67,10 @@ public class UIManager : MonoBehaviour
 
     public void setLifesVisibility(bool visibilidad)
     {
-        livesDisplayImage.gameObject.SetActive(visibilidad);
+        
+        livesDisplayImageP1.gameObject.SetActive(visibilidad);
+        if (!isSinglePlayerOn)
+            livesDisplayImageP2.gameObject.SetActive(visibilidad);
     }
 
     public void setScoreVisibility(bool visibilidad)

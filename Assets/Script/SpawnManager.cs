@@ -78,7 +78,7 @@ public class SpawnManager : MonoBehaviour
 
             //tipo PU
             int tipoPU = Random.Range(0, PoweUps.Length);
-            Debug.Log(tipoPU);
+            //Debug.Log(tipoPU);
             Instantiate(PoweUps[tipoPU],posicionPU,Quaternion.identity);
             }
             else
