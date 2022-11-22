@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
 
+    [SerializeField]
+    private bool inmortal=false;
+
     //vars
     [SerializeField]
     private float speed = 5.0f;
@@ -22,9 +25,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject prefabPlayerExplotion;
 
+    [SerializeField]
+    private int puntosDeDash = 5;
 
     //UI
     private UIManager uiManager;
+
+    private bool dashDisponible=false;
 
 
 
@@ -53,7 +60,7 @@ public class Player : MonoBehaviour
     private bool isSinglePlayerOn = true;
 
     // Start is called before the first frame update
-    void Start()
+    void Start() 
     {
         currentLifes = MAX_LIVES;
 
@@ -82,14 +89,24 @@ public class Player : MonoBehaviour
     void Update()
     {
         //Debug.Log(isSinglePlayerOn);
-        if (isSinglePlayerOn)
-            movimiento();
+        if (isSinglePlayerOn) {
+            if (Input.GetKeyDown(KeyCode.X) && dashDisponible)
+            {
+                Dashed();
+            }
+            else
+            {
+                movimiento();
+            }
+        }
         else {
             if (isPlayer1)
                 movimientoP1();
             else
                 movimientoP2();
         }
+
+        
 
         shoot();
     }
@@ -216,13 +233,13 @@ public class Player : MonoBehaviour
 
     public void ShieldOn(){
         shieldActive=true;
-        Debug.Log("Shield On");
+        //Debug.Log("Shield On");
         shieldObj.SetActive(true);
         //StartCoroutine(ShieldOff());
     }
 
     public void ShieldOff(){
-        Debug.Log("Shield Off");
+        //Debug.Log("Shield Off");
         shieldActive=false;
         shieldObj.SetActive(false);
     }
@@ -241,7 +258,7 @@ public class Player : MonoBehaviour
     {
         // suspend execution for 5 seconds
         yield return new WaitForSeconds(5);
-        Debug.Log("Triple off");
+        //Debug.Log("Triple off");
         canTripleOff();
     }
 
@@ -249,7 +266,7 @@ public class Player : MonoBehaviour
     {
         // suspend execution for 5 seconds
         yield return new WaitForSeconds(5);
-        Debug.Log("Speed off");
+        //Debug.Log("Speed off");
         SpeedUpOff();
     }
 
@@ -261,18 +278,21 @@ public class Player : MonoBehaviour
             ShieldOff();
         }
         else{
-            currentLifes--;
-            if (currentLifes < 0)
+            if (!inmortal)
             {
-                GameManager gmanager = GameObject.Find("GameManager").GetComponent<GameManager>();
-                if (gmanager != null)
+                currentLifes--;
+                if (currentLifes < 0)
                 {
-                    gmanager.FinishGame();
-                    gmanager.playerDied();
+                    GameManager gmanager = GameObject.Find("GameManager").GetComponent<GameManager>();
+                    if (gmanager != null)
+                    {
+                        gmanager.FinishGame();
+                        gmanager.playerDied();
+                    }
                 }
+                else
+                    DamageSpaceship();
             }
-            else
-                DamageSpaceship();
         }
         if(currentLifes==0){
             HurtObj.SetActive(true);
@@ -281,19 +301,68 @@ public class Player : MonoBehaviour
 
     private void DamageSpaceship()
     {
-        Debug.Log("The quedan " + currentLifes + " vidas.");
+        //Debug.Log("The quedan " + currentLifes + " vidas.");
         if(uiManager!=null)
             uiManager.UpgradeLifes(currentLifes,isPlayer1);
     }
 
     public void PlayerDeath() {
         //hemos muerto
-        Debug.Log("Moriste.");
+        //Debug.Log("Moriste.");
         Instantiate(prefabPlayerExplotion,transform.position,Quaternion.identity);
         
 
         Destroy(this.gameObject);
 
+    }
+
+    public bool lifeUp() {
+        currentLifes++;
+        if (currentLifes > MAX_LIVES)
+        {
+            currentLifes--;
+            return false;
+        }
+        else {
+            //Debug.Log("The quedan " + currentLifes + " vidas.");
+            if (uiManager != null)
+                uiManager.UpgradeLifes(currentLifes, isPlayer1);
+        }
+        return true;
+    }
+
+    public void DashOn()
+    {
+        Debug.Log("DashOn");
+        dashDisponible = true;
+    }
+
+    public void DashOff()
+    {
+        Debug.Log("Dashoff");
+        dashDisponible = false;
+        inmortal = false;
+    }
+
+    public void Dashed()
+    {
+        inmortal = true;
+
+        //horizontal
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+       // transform.Translate(new Vector3(transform.position.x +(horizontalInput *puntosDeDash),transform.position.y +(puntosDeDash*verticalInput),transform.position.z));
+        Debug.Log("Antes: "+transform.position); 
+        transform.Translate(new Vector3(horizontalInput *puntosDeDash,verticalInput*puntosDeDash ,0));
+        Debug.Log("Despues: "+transform.position); 
+
+
+        //vertical
+
+
+        
+
+        DashOff();
     }
 
 

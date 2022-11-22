@@ -407,7 +407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &644191458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -802,7 +802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1726608605
 RectTransform:
   m_ObjectHideFlags: 0
@@ -909,8 +909,10 @@ MonoBehaviour:
   EnemySpawnTime: 2
   PUTriplePrefab: {fileID: 2112964498581131807, guid: f1da4444178d2e446b9d1e0d65a9b96b, type: 3}
   PoweUps:
-  - {fileID: 2112964498581131807, guid: f1da4444178d2e446b9d1e0d65a9b96b, type: 3}
-  - {fileID: 4743599236012912385, guid: 936b5a3d8524b024591e44b1a5025146, type: 3}
+  - {fileID: 318174647732729970, guid: 0fc9371a50b59ca4092f20b2c7758541, type: 3}
   - {fileID: 8288622345522937370, guid: 0b34507aec5adb14bb00f73dae962559, type: 3}
+  - {fileID: 4743599236012912385, guid: 936b5a3d8524b024591e44b1a5025146, type: 3}
+  - {fileID: 4169260446160730034, guid: 296e94bc351f46e4fad118766f2cd9c3, type: 3}
+  - {fileID: 2112964498581131807, guid: f1da4444178d2e446b9d1e0d65a9b96b, type: 3}
   PUSpawnTime: 2
   funciona: 0

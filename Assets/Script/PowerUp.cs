@@ -41,8 +41,17 @@ public class PowerUp : MonoBehaviour
                 case 2:
                     miPlayer.ShieldOn();
                     break;
+                case 3:
+                    if (!miPlayer.lifeUp())
+                    {
+                        return;
+                    }
+                    break;
+                case 4:
+                miPlayer.DashOn();
+                    break;
             }
-            Debug.Log("Collision con: "+other.name);
+            //Debug.Log("Collision con: "+other.name);
             Destroy(this.gameObject);
         
     }
