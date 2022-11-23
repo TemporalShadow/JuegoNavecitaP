@@ -77,6 +77,13 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(0, 0, 0);
         }
+        else
+        {
+            if(isPlayer1)
+                transform.position = new Vector3(-3, 0, 0);
+            else
+                transform.position = new Vector3(3, 0, 0);
+        }
 
 
         uiManager=GameObject.Find("Canvas").GetComponent<UIManager>();
@@ -341,12 +348,23 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Dashoff");
         dashDisponible = false;
+        StartCoroutine(DashedOff());
+    }
+
+    IEnumerator DashedOff()
+    {
+        //Debug.Log("Entre");
+        yield return new WaitForSeconds(1);
         inmortal = false;
+        this.gameObject.GetComponent<TrailRenderer>().enabled = false;
+        //Debug.Log("Sali");
     }
 
     public void Dashed()
     {
         inmortal = true;
+        this.gameObject.GetComponent<TrailRenderer>().enabled=true;
+        
 
         //horizontal
         horizontalInput = Input.GetAxis("Horizontal");

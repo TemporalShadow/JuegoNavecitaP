@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
             rend1.color = Color.cyan;
 
 
-            Vector3 posicionPlayer2 = new Vector3(4, 0, 0);
+            Vector3 posicionPlayer2 = new Vector3(4, 4, 0);
             p2 = Instantiate(prefabPlayer, posicionPlayer, Quaternion.identity);
             (p2.GetComponent<Player>()).isP1(false);
             SpriteRenderer rend2 = p1.GetComponent<SpriteRenderer>();

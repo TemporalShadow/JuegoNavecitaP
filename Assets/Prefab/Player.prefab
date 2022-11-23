@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb186cf602a8007409b5e7d28af13c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inmortal: 1
+  inmortal: 0
   speed: 5
   canTriple: 0
   shieldActive: 0
@@ -170,7 +170,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8812725425737423788}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -204,7 +204,7 @@ TrailRenderer:
   m_SortingLayerID: 983513499
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Time: 0.05
+  m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
